@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Duplicate</title>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+	<style>
+		#data {
+			display: none;
+		}
+	</style>
+</head>
+<body>
+
+	<div class="container">
+	  <div class="jumbotron">
+	    <h1>GitHub Profile Finder</h1>      
+	    <p>This page helps you find the github profile and get some data about them.</p>
+	  </div>  
+
+	  <div class="row">
+	    <div class="col-sm-4"></div>
+	    <div class="col-sm-4">
+	    	<form class="form-inline" onsubmit=" event.preventDefault(); getProfile();">
+			    <div class="form-group">
+				    <input type="text" class="form-control" id="username" placeholder="Enter Username" >
+			    </div>
+			    <button type="submit" class="btn btn-default">Submit</button>
+			</form>
+	    </div>
+	    <div class="col-sm-4"></div>
+	  </div>
+	  <br>
+
+	<div class="panel panel-default" id="data">
+	    <div class="panel-body">
+	    	<div class="col-xs-4"><img id="image" src="#" width="100%" ></div>
+	    	<div class="col-xs-8" style="font-size: 18px;">
+	    		<p>Name: <span id="name"></span></p>
+	    		<p>Location: <span id="location"></span></p>
+	    		<p>Company: <span id="company"></span></p>
+	    		<p>Email: <span id="email"></span></p>
+	    		<p>Blog: <span id="blog"></span></p>
+	    		<p>Followers: <span id="followers"></span></p>
+	    		<p>Following: <span id="following"></span></p>
+	    		<p>Public Repos: <span id="repos"></span></p>
+	    		<p>Public Gists: <span id="gists"></span></p>
+	    		<a href="#" id="more" target="_blank" class="btn btn-primary">More</a>
+	    	</div>
+	    </div>
+	  </div>
+
+	<script>
+		
+		function getProfile() {
+
+			$(document).ready(function(){
+				$("#data").show();
+			});
+
+			
+
+			var username = document.getElementById("username").value;
+		
+			var xhttp = new XMLHttpRequest();
+			xhttp.onreadystatechange = function() {
+				if(xhttp.readyState==4 && xhttp.status==200) {
+					var user = JSON.parse(xhttp.responseText);
+					document.getElementById("image").src=user.avatar_url;
+
+					document.getElementById("name").innerHTML=user.name;
+					document.getElementById("location").innerHTML=user.location;
+					document.getElementById("company").innerHTML=user.company;
+					document.getElementById("email").innerHTML=user.email;
+					document.getElementById("blog").innerHTML=user.blog;
+					document.getElementById("followers").innerHTML=user.followers;
+					document.getElementById("following").innerHTML=user.following;
+					document.getElementById("repos").innerHTML=user.public_repos;
+					document.getElementById("gists").innerHTML=user.public_gists;
+					document.getElementById("more").href=user.html_url;
+
+					
+				}
+			}
+
+			xhttp.open("GET", "https://api.github.com/users/"+username, true);
+			xhttp.send();
+		}
+		
+
+	</script>
+</body>
+</html>
