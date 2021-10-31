@@ -1,31 +1,13 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<title>Duplicate</title>
+	<title>GitHub Profile Finder</title>
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+	<link rel="stylesheet" href="./style.css">
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-	<style>
-		#data {
-			display: none;
-		}
-
-		.github-logo {
-			margin-top: 3rem;
-			margin-left: -2rem;
-			height: 9rem;
-			width: 9rem;
-		}
-
-		.footer {
-			font-size: 15px;
-			bottom:0;
-			position: relative;
-			margin-top: 32rem;
-		}
-	</style>
 </head>
 <body>
 
@@ -90,7 +72,6 @@
 			   </p>
 		   </center>
 	   </div>
-
 	  </div>
 
 	<script>
@@ -101,13 +82,10 @@
 				$("#data").show();
 			});
 
-			
-
 			var username = document.getElementById("username").value;
 		
 			var xhttp = new XMLHttpRequest();
 			xhttp.onreadystatechange = function() {
-				console.log("value 1 :: " + xhttp)
 				if(xhttp.readyState==4 && xhttp.status==200) {
 					var user = JSON.parse(xhttp.responseText);
 					document.getElementById("image").src=user.avatar_url;
@@ -131,7 +109,6 @@
 			xhttp.send();
 		}
 		
-
 	</script>
 </body>
 </html>

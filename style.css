@@ -1,0 +1,17 @@
+#data {
+    display: none;
+}
+
+.github-logo {
+    margin-top: 3rem;
+    margin-left: -2rem;
+    height: 9rem;
+    width: 9rem;
+}
+
+.footer {
+    font-size: 15px;
+    bottom:0;
+    position: relative;
+    margin-top: 32rem;
+}
